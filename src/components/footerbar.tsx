@@ -7,7 +7,7 @@ import Profile from "../modules/profile/screens/profile";
 type TabParamList = {
     Home: undefined;
     Search: undefined;
-    Notifications: undefined;
+    favorites: undefined;
     Profile: undefined;
 }
 
@@ -22,12 +22,12 @@ const FooterBar: React.FC = () => {
                         const icons: Record<keyof TabParamList, string> = {
                             Home: "home-outline",
                             Search: "search-outline",
-                            Notifications: "notifications-outline",
+                            favorites: "star-outline",
                             Profile: "person-outline",
                         };
                         return <Ionicons name={icons[route.name]} size={size} color={color} />;
                     },
-                    tabBarActiveTintColor: "#6200ea",
+                    tabBarActiveTintColor: "#003153",
                     tabBarInactiveTintColor: "gray",
                     tabBarStyle: { backgroundColor: "#fff", paddingBottom: 5 },
                     headerShown: false,
@@ -35,7 +35,7 @@ const FooterBar: React.FC = () => {
             >
                 <Tab.Screen name="Home" component={Home} />
                 <Tab.Screen name="Search" component={Home} />
-                <Tab.Screen name="Notifications" component={Home} />
+                <Tab.Screen name="favorites" component={Home} />
                 <Tab.Screen name="Profile" component={Profile} />
 
             </Tab.Navigator>

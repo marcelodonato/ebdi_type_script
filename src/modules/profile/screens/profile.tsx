@@ -1,30 +1,30 @@
 import { colors } from "../../../res/colors/colors";
-import { Container } from "../../auth/screens/login/styles";
 import ProfileBody from "../components/profileBody";
-import {SafeAreaView, View, StyleSheet, ScrollView } from "react-native";
+import ProfileHeader from "../components/profileHeader";
+import { StyleSheet, ScrollView } from "react-native";
 
- 
-
-const Profile: React.FC = () => {
-    return(
-        <>
-        <SafeAreaView style={styles.container}>
-            <ScrollView>
-            <View>
-                <ProfileBody />
-            </View>
-            </ScrollView>
-         
-        </SafeAreaView>
-        </>
-    )
-} ;
+const Profile: React.FC = ({ navigation }: any) => {
+    return (
+        <ScrollView
+            style={styles.container}
+            contentContainerStyle={styles.scrollContent}
+            keyboardShouldPersistTaps="handled"
+            keyboardDismissMode="on-drag"
+        >
+            <ProfileHeader />
+            <ProfileBody navigation={navigation} />
+        </ScrollView>
+    );
+};
 
 export default Profile;
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor: colors.light,
         flex: 1,
-        backgroundColor: colors.light
+    },
+    scrollContent: {
+        flexGrow: 1,
     }
-})
+});

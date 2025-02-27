@@ -1,10 +1,12 @@
 import PrimaryButton from "../../../../components/PrimaryButton";
 import { useState } from "react";
+import { useDispatch } from 'react-redux'; // Importação do hook useDispatch
+import { AppDispatch } from "../../../../store/store";
 import { StyleSheet, View, Text } from "react-native";
 import CustomTextInput from "../../../../components/customTextInput";
 import { strings } from "../../../../res/strings/strings";
 import { colors } from "../../../../res/colors/colors";
-import { authActions } from "../../../../actions/authActions";
+import { loginUser } from "../../../../store/authStore";
 
 interface LoginBodyProps {
     navigation: any;
@@ -15,6 +17,8 @@ const LoginBody: React.FC<LoginBodyProps> = ( {navigation}) => {
     const [userPassword, setUserPassword] = useState<string>("");
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
     const [loading, setLoading] = useState<boolean>(false);
+
+    const dispatch = useDispatch<AppDispatch>();
 
     const onClickButton = async () => { 
         let newErrors: { [key: string]: string } = {};
@@ -32,7 +36,7 @@ const LoginBody: React.FC<LoginBodyProps> = ( {navigation}) => {
             setLoading(true); 
 
             try {
-                const user = await authActions.login(userEmail, userPassword);
+                await dispatch(loginUser({ email: userEmail, password: userPassword })).unwrap();
                 setUserEmail("");
                 setUserPassword("");
                 setLoading(false);
@@ -66,7 +70,7 @@ const LoginBody: React.FC<LoginBodyProps> = ( {navigation}) => {
         <View style={styles.container}>
             <CustomTextInput
                 textTitle={strings.email}
-                label="Digite seu e-mail"
+                label={strings.loginEmailPlaceholder}
                 inputType="email"
                 autoCapitalize="none"
                 value={userEmail}
@@ -77,7 +81,7 @@ const LoginBody: React.FC<LoginBodyProps> = ( {navigation}) => {
             />
             <CustomTextInput
                 textTitle={strings.password}
-                label="Digite sua senha"
+                label={strings.loginPasswordPlaceholder}
                 inputType="password"
                 value={userPassword}
                 error={errors.password}

@@ -3,9 +3,9 @@ import authReducer from './authStore';
 
 const store = configureStore({
   reducer: {
-    auth: authReducer, 
+    auth: authReducer,
   },
 });
 
-export default store;
 export type AppDispatch = typeof store.dispatch; 
+export default store;

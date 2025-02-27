@@ -50,7 +50,7 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
                 secureTextEntry={secureTextEntry}
                 value={value}
                 onChangeText={handleChangeText}
-                {...rest} // Passa o restante das props aqui
+                {...rest} 
             />
             {error && <Text style={styles.errorText}>{error}</Text>}
         </View>

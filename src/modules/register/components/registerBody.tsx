@@ -5,12 +5,13 @@ import PrimaryButton from "../../../components/PrimaryButton";
 import { strings } from "../../../res/strings/strings";
 import { User } from "../../../models/userEntity";
 import { createUser } from "../../../actions/registerUserAction";
+import { isValidEmail } from "../../../utils/validationsUtils";
 
 interface LoginBodyProps {
     navigation: any;
 }
 
-const RegisterBody: React.FC<LoginBodyProps> = ({navigation}) => {
+const RegisterBody: React.FC<LoginBodyProps> = ({ navigation }) => {
     const [user, setUser] = useState<User>({
         name: '',
         email: '',
@@ -43,8 +44,8 @@ const RegisterBody: React.FC<LoginBodyProps> = ({navigation}) => {
         }
         if (!user.email) {
             newErrors.email = strings.emailEmptyError;
-        } else if (!/\S+@\S+\.\S+/.test(user.email)) {
-            newErrors.email = "Email inválido!";
+        } else if (!isValidEmail(user.email)) {
+            newErrors.email = strings.registerEmailValidation;
         }
         if (!user.password) {
             newErrors.password = strings.passwordEmptyError;
@@ -53,7 +54,7 @@ const RegisterBody: React.FC<LoginBodyProps> = ({navigation}) => {
             newErrors.confirmPassword = strings.confirmePasswordEmptyError;
         }
         if (user.password !== confirmPassword) {
-            newErrors.confirmPassword = "As duas senhas precisam ser iguais!";
+            newErrors.confirmPassword = strings.registerConfirmPasswordError;
         }
 
         setErrors(newErrors);
@@ -61,7 +62,7 @@ const RegisterBody: React.FC<LoginBodyProps> = ({navigation}) => {
         if (Object.keys(newErrors).length === 0) {
             try {
                 setLoading(true);
-                await createUser(user.email,user.password, user);
+                await createUser(user.email, user.password, user);
                 alert('Usuário registrado com sucesso!');
                 clearAllInputs();
                 navigation.navigate('Login');

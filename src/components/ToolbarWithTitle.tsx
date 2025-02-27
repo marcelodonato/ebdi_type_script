@@ -22,7 +22,7 @@ const ToolbarWithTitle: React.FC<ToolbarProps> = ({ children }) => {
                 </Svg>
             </TouchableOpacity>
             <Text style={styles.title}>{children}</Text>
-            <View style={{ width: 30 }} /> {/* Espaço vazio para alinhar o título */}
+            <View style={{ width: 30 }} />
         </View>
     );
 };
@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 18,
         fontWeight: "bold",
-        color: "black",
+        color: colors.black,
     },
 });

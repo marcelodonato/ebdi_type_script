@@ -1,4 +1,5 @@
 import { View, Text, Pressable, StyleSheet, GestureResponderEvent } from "react-native";
+import { colors } from "../res/colors/colors";
 
 interface PrimaryButtonProps {
     children: React.ReactNode;
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
         height: 50
     },
     buttonInnerContainer: {
-        backgroundColor: '#000000',
+        backgroundColor: colors.black,
         paddingVertical: 8,
         paddingHorizontal: 16,
         elevation: 2,
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         textAlign: 'center',
-        color: '#ffffff',
+        color: colors.light,
         fontWeight: 'bold',
         fontSize: 16,
     },

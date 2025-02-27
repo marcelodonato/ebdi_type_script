@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { colors } from "../../../../res/colors/colors";
 
 interface LoginFooterProps {
     navigation: any;
@@ -24,7 +25,7 @@ export default LoginFooter;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#E0E3E7',
+        backgroundColor: colors.mediumGray,
         width: '100%',
         height: 70,
         justifyContent: 'center',
@@ -36,12 +37,12 @@ const styles = StyleSheet.create({
 
     },
     textNotClicable: {
-        color: '#A4A4A4',
+        color: colors.gray,
         fontWeight: "bold"
     },
     textClicable: {
         marginStart: 6,
-        color: '#000000',
+        color: colors.black,
         fontWeight: "bold"
     }
 });

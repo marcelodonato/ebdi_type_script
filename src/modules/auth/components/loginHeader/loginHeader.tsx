@@ -1,8 +1,8 @@
 import * as S from './loginHeader.styles';
 import { View, Image, StyleSheet, ImageBackground, Text,  } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 import { strings } from '../../../../res/strings/strings';
+import { colors } from '../../../../res/colors/colors';
 
 const LoginHeader: React.FC = () => {
     return (
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '25%',
-        backgroundColor: '#000000'
+        backgroundColor: colors.black
     },
     image: {
         marginTop: 8,
@@ -50,12 +50,12 @@ const styles = StyleSheet.create({
     textTitle: {
         marginStart: 16,
         marginTop: 38,
-        color: '#ffffff',
+        color: colors.light,
         fontWeight: 'bold',
         fontSize: 22,
     },
     textSubTitle: {
         marginStart: 16,
-        color: '#ffffff'
+        color: colors.light
     }
 });

@@ -1,28 +1,46 @@
 import { View, StyleSheet } from "react-native";
 import ButtonText from "../../../components/buttonText";
 import { colors } from "../../../res/colors/colors";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../store/store";
+import { logoutUser } from "../../../store/authStore";
+import { strings } from "../../../res/strings/strings";
 
+interface ProfileProps {
+    navigation: any;
+}
 
-ButtonText
+const ProfileBody: React.FC<ProfileProps> = ({ navigation }) => {
+    const dispatch = useDispatch<AppDispatch>();
 
-const ProfileBody: React.FC = () => {
+    const logout = async () => {
+        try {
+            await dispatch(logoutUser()).unwrap();
+            console.log("Logout successful!");
+
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'Login' }]
+            })
+        } catch (e: any) {
+            console.log("Erro ao deslogar:", e.message);
+        }
+    };
 
     function onClickButton() {
-        console.log("meu botao")
+        console.log("meu botao");
     }
 
-    return(
-        <>
+    return (
         <View style={styles.bodyContainer}>
-            <View style={styles.buttonContainer}><ButtonText title="Alterar dados" onPress={onClickButton}/></View>
-            <View style={styles.buttonContainer}><ButtonText title="Favoritos" onPress={onClickButton}/></View>
-            <View style={styles.buttonContainer}><ButtonText title="Termos de uso" onPress={onClickButton}/></View>
-            <View style={styles.buttonContainer}><ButtonText title="Poliítica de privacidade" onPress={onClickButton}/></View>
-            <View style={styles.buttonContainer}><ButtonText title="Excluir conta" onPress={onClickButton} textIconColor="#FF6E6E"/></View>
-            <View style={styles.buttonContainer}><ButtonText title="Logout" onPress={onClickButton}/></View>
+            <View style={styles.buttonContainer}><ButtonText title={strings.editProfileButton} onPress={onClickButton} /></View>
+            <View style={styles.buttonContainer}><ButtonText title={strings.favoritesProfileButton} onPress={onClickButton} /></View>
+            <View style={styles.buttonContainer}><ButtonText title={strings.termsButton} onPress={onClickButton} /></View>
+            <View style={styles.buttonContainer}><ButtonText title={strings.policyButton} onPress={onClickButton} /></View>
+            <View style={styles.buttonContainer}><ButtonText title={strings.deleteAccountButton} onPress={onClickButton} textIconColor={colors.red} /></View>
+            <View style={styles.buttonContainer}><ButtonText title={strings.logoutButton} onPress={logout} /></View>
         </View>
-        </>
-    )
+    );
 };
 
 export default ProfileBody;
@@ -30,10 +48,9 @@ export default ProfileBody;
 const styles = StyleSheet.create({
     bodyContainer: {
         backgroundColor: colors.light,
-        padding: 16
+        padding: 16,
     },
     buttonContainer: {
-        marginTop: 8
-    }
-})
-
+        marginTop: 8,
+    },
+});

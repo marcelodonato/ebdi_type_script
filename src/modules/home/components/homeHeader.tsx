@@ -1,5 +1,6 @@
 import { View, ImageBackground, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { colors } from "../../../res/colors/colors";
 
 const HomeHeader: React.FC = () => {
     return (
@@ -22,14 +23,14 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '30%',
-        backgroundColor: '#000000',
+        backgroundColor: colors.black,
     },
     image: {
         flex: 1,
 
     },
     text: {
-        color: '#fff',
+        color: colors.light,
         fontSize: 20,
         fontWeight: 'bold',
     },

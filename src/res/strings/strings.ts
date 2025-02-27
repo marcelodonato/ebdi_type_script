@@ -1,4 +1,3 @@
-// src/assets/strings.ts
 export const strings = {
     //commun
     email: "E-mail",
@@ -14,7 +13,6 @@ export const strings = {
     companyEmptyError: "A Empresa é obrigatório!",
     positionEmptyError: "A Posição/Cargo é obrigatória!",
     confirmePasswordEmptyError: "O campo Confirmar senha é obrigatório!",
-
 
     // Login header
     loginTitle: "Acesse sua conta",
@@ -34,7 +32,15 @@ export const strings = {
     registerEmailPlaceholder: "Digite seu e-mail",
     registerPasswordPlaceholder: "Digite sua senha",
     registerConfirmPasswordPlaceholder: "Confirme sua senha",
+    registerEmailValidation: "Email inválido!",
+    registerConfirmPasswordError: "As duas senhas precisam ser iguais!",
 
-
+    //profile
+    editProfileButton: "Alterar dados",
+    favoritesProfileButton: "Favoritos",
+    termsButton: "Termos de uso",
+    policyButton: "Política de privacidade",
+    deleteAccountButton: "Excluir conta",
+    logoutButton: "Sair"
 
 };
