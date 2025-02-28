@@ -1,4 +1,4 @@
-import { StyleSheet, View, ImageBackground, Text, SafeAreaView } from "react-native";
+import { StyleSheet, View, ImageBackground, Text, SafeAreaView, Image } from "react-native";
 import { colors } from "../../../res/colors/colors";
 
 const ProfileHeader: React.FC = () => {
@@ -12,6 +12,7 @@ const ProfileHeader: React.FC = () => {
                 <View style={styles.cardContainer}>
                     <View style={styles.containerPosition}>
                         <View style={styles.imageCOntainer}>
+                            <Image  style={styles.image} source={require('../../../../assets/photoTest.png')}/>
                             {/* Vou aadcionar uma foto aqui dentro para mostrar a foto do usuario */}
                         </View>
                         <View style={styles.containerTexts}>
@@ -52,13 +53,20 @@ const styles = StyleSheet.create({
     imageCOntainer: {
         width: 120,
         height: 120,
-        backgroundColor: '#f4a6d3', //Alterar a cor aqui
+        backgroundColor: colors.light,
         elevation: 3,
+        justifyContent: 'center',
+        alignItems: 'center', 
         shadowColor: colors.black,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.1,
         shadowRadius: 4,
         borderRadius: '100%'
+    },
+    image :{
+        width: 117,
+        height: 117,
+        borderRadius: 100,
     },
     containerPosition: {
         bottom: 65,

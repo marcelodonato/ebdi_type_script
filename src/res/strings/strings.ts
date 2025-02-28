@@ -41,6 +41,12 @@ export const strings = {
     termsButton: "Termos de uso",
     policyButton: "Política de privacidade",
     deleteAccountButton: "Excluir conta",
-    logoutButton: "Sair"
+    logoutButton: "Sair",
+
+    //homeBody
+    nextEvents: "Próximos eventos",
+    seeAll: "Ver todos",
+    ebdiNetwork:"EBDI Network",
+    sponsors:"Patrocinadores",
 
 };
