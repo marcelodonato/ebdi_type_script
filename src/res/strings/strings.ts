@@ -49,4 +49,18 @@ export const strings = {
     ebdiNetwork:"EBDI Network",
     sponsors:"Patrocinadores",
 
+    // favorites
+    favorites: "Favoritos",
+
+    // events
+    events: "Eventos",
+    eventsFilterFintech: "Fintech",
+    eventsFilterProductivity: "Produtividade",
+    eventsFilterInnovation: "Inovação",
+    eventsFilterTechnology: "Tecnologia",
+
+    //emptyState
+    emptyStateTitle: "Ops, não tem ninguém aqui...",
+    emptyStateSubTitle: "Favorite alguém para começar sua rede.",
+
 };

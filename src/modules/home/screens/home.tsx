@@ -1,13 +1,14 @@
 import { StyleSheet, View, ScrollView } from "react-native";
-import HomeHeader from "./components/homeHeader";
-import { colors } from "../../res/colors/colors";
-import CustomSwiper from "../../components/CustomSwiper";
-import HomeBody from "./components/homeBody";
+import HomeHeader from "../components/homeHeader";
+import { colors } from "../../../res/colors/colors";
+import CustomSwiper from "../../../components/CustomSwiper";
+import HomeBody from "../components/homeBody";
+import { StatusBar } from 'expo-status-bar';
 
 const carouselData = [
-    { id: "1", uri: require("../../../assets/banner.png") },
-    { id: "2", uri: require("../../../assets/banner.png") },
-    { id: "3", uri: require("../../../assets/banner.png") },
+    { id: "1", uri: require("../../../../assets/banner.png") },
+    { id: "2", uri: require("../../../../assets/banner.png") },
+    { id: "3", uri: require("../../../../assets/banner.png") },
 ];
 
 const Home: React.FC = () => {

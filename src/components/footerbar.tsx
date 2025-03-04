@@ -1,14 +1,17 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Home from "../modules/home/home";
+import Home from "../modules/home/screens/home";
 import Profile from "../modules/profile/screens/profile";
+import Favorites from "../modules/favorites/screens/favorites";
+import Event from "../modules/event/screens/event";
+import { colors } from "../res/colors/colors";
 
 type TabParamList = {
     Home: undefined;
-    Search: undefined;
-    favorites: undefined;
-    Profile: undefined;
+    Eventos: undefined;
+    Favoritos: undefined;
+    Perfil: undefined;
 }
 
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -21,22 +24,22 @@ const FooterBar: React.FC = () => {
                     tabBarIcon: ({ color, size }) => {
                         const icons: Record<keyof TabParamList, string> = {
                             Home: "home-outline",
-                            Search: "search-outline",
-                            favorites: "star-outline",
-                            Profile: "person-outline",
+                            Eventos: "calendar-outline",
+                            Favoritos: "star-outline",
+                            Perfil: "person-outline",
                         };
                         return <Ionicons name={icons[route.name]} size={size} color={color} />;
                     },
-                    tabBarActiveTintColor: "#003153",
+                    tabBarActiveTintColor: colors.darkBlue,
                     tabBarInactiveTintColor: "gray",
-                    tabBarStyle: { backgroundColor: "#fff", paddingBottom: 5 },
+                    tabBarStyle: { backgroundColor: colors.light, paddingBottom: 5 },
                     headerShown: false,
                 })}
             >
-                <Tab.Screen name="Home" component={Home} />
-                <Tab.Screen name="Search" component={Home} />
-                <Tab.Screen name="favorites" component={Home} />
-                <Tab.Screen name="Profile" component={Profile} />
+                <Tab.Screen  name="Home" component={Home} />
+                <Tab.Screen name="Eventos" component={Event} />
+                <Tab.Screen name="Favoritos" component={Favorites} />
+                <Tab.Screen name="Perfil" component={Profile} />
 
             </Tab.Navigator>
         </>

@@ -40,7 +40,6 @@ const HomeBody: React.FC = () => {
             <Section title={strings.sponsors}>
                 <FlatList
                     data={data}
-
                     horizontal
                     keyExtractor={(item) => item.id}
                     showsHorizontalScrollIndicator={false}

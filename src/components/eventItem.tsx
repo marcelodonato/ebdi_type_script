@@ -22,12 +22,12 @@ const EventItem: React.FC<EventItemProps> = ({photo, name, date = null, city = n
                <View style={styles.textContainer}>
                <Text style={styles.textTitle} numberOfLines={2}>{name}</Text>
                <View style={styles.rowContainer}>
-               <Ionicons name="calendar-outline" size={16} color='#000000' />
-               <Text style={styles.text} numberOfLines={2}>teste teste  testeteste</Text>
+               <Ionicons name="calendar-outline" size={16} color={colors.black} />
+               <Text style={styles.text} numberOfLines={2}>{date}</Text>
                </View>
                <View style={styles.rowContainer}>
-               <Ionicons name="location-outline" size={16} color='#000000' />
-               <Text style={styles.text} numberOfLines={2}>{name}</Text>
+               <Ionicons name="location-outline" size={16} color={colors.black}  />
+               <Text style={styles.text} numberOfLines={2}>{city}</Text>
                </View>
                </View>
             </View>
@@ -39,8 +39,8 @@ export default EventItem;
 
 const styles = StyleSheet.create({
     container: {
-        width: 140,
-        height: 190,
+        width: 180,
+        height: 230,
         borderColor: colors.black,
         borderRadius: 8,
         borderWidth: 1,
@@ -57,12 +57,12 @@ const styles = StyleSheet.create({
         padding: 6
     },
     textTitle:{
-        fontSize: 14,
+        fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 6
     },
     text: {
-        fontSize: 12,
+        fontSize: 16,
         marginStart: 6
     },
     rowContainer: {
