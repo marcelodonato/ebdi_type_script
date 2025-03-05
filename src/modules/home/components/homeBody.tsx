@@ -4,6 +4,7 @@ import EventItem from "../../../components/eventItem";
 import ItemAccountList from "../../../components/itemAccountList";
 import SponsorItem from "../../../components/sponsorItem";
 import { strings } from "../../../res/strings/strings";
+import { Event } from "../../../models/eventEntity";
 
 const data = [
     { id: '1', name: "Marcelo Donato", photo: "" },
@@ -12,16 +13,20 @@ const data = [
 
 ];
 
-const HomeBody: React.FC = () => {
+interface homeData {
+    events: Event[] | null;
+}
+
+const HomeBody: React.FC<homeData> = ({ events}) => {
     return (
         <View style={styles.container}>
             <Section title={strings.nextEvents}>
                 <FlatList
-                    data={data}
-                    keyExtractor={(item) => item.id}
+                    data={events}
+                    keyExtractor={(item) => item.name || 'defaultKey'}
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    renderItem={({ item }) => <EventItem name={item.name} photo={item.photo} />}
+                    renderItem={({ item }) => <EventItem event={item} />}
                     contentContainerStyle={styles.listContainer}
                 />
             </Section>
@@ -90,5 +95,6 @@ const styles = StyleSheet.create({
     },
     listContainer: {
         flexDirection: 'row',
+        marginStart: 8
     },
 });

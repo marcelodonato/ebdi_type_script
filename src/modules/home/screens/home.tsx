@@ -1,9 +1,12 @@
-import { StyleSheet, View, ScrollView } from "react-native";
+import React, { useEffect } from "react";
+import { StyleSheet, View, ScrollView, ActivityIndicator, Text } from "react-native";
 import HomeHeader from "../components/homeHeader";
 import { colors } from "../../../res/colors/colors";
 import CustomSwiper from "../../../components/CustomSwiper";
 import HomeBody from "../components/homeBody";
-import { StatusBar } from 'expo-status-bar';
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../store/store";
+import { fetchHomeData } from "../../../store/homeSotre";
 
 const carouselData = [
     { id: "1", uri: require("../../../../assets/banner.png") },
@@ -12,6 +15,26 @@ const carouselData = [
 ];
 
 const Home: React.FC = () => {
+    const dispatch = useDispatch<AppDispatch>();
+    const { data, loading, error } = useSelector((state: RootState) => state.home);
+
+    useEffect(() => {
+        dispatch(fetchHomeData());
+    }, [dispatch]);
+
+    useEffect(() => {
+        // Verificando os dados no console
+        console.log("Home Data:", data);
+    }, [data]);
+
+    if (loading) {
+        return <ActivityIndicator size="large" color={colors.darkBlue} style={styles.loader} />;
+    }
+
+    if (error) {
+        return <Text style={styles.errorText}>Error: {error}</Text>;
+    }
+
     return (
         <ScrollView
             style={styles.scrollView}
@@ -23,7 +46,7 @@ const Home: React.FC = () => {
                 <CustomSwiper data={carouselData} />
             </View>
             <View style={styles.homeBodyContainer}>
-                <HomeBody />
+                <HomeBody events={data} />
             </View>
         </ScrollView>
     );
@@ -48,5 +71,16 @@ const styles = StyleSheet.create({
     },
     homeBodyContainer: {
         transform: [{ translateY: -70 }],
+    },
+    loader: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 50,
+    },
+    errorText: {
+        color: "red",
+        textAlign: "center",
+        marginTop: 20,
     },
 });

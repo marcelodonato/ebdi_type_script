@@ -1,10 +1,12 @@
-import { View, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet,  } from "react-native";
 import ButtonText from "../../../components/buttonText";
 import { colors } from "../../../res/colors/colors";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";
 import { logoutUser } from "../../../store/authStore";
 import { strings } from "../../../res/strings/strings";
+import CustomDialog from "../../../components/customDialog";
 
 interface ProfileProps {
     navigation: any;
@@ -12,6 +14,8 @@ interface ProfileProps {
 
 const ProfileBody: React.FC<ProfileProps> = ({ navigation }) => {
     const dispatch = useDispatch<AppDispatch>();
+
+    const [isDialogVisible, setDialogVisible] = useState(false);
 
     const logout = async () => {
         try {
@@ -27,18 +31,35 @@ const ProfileBody: React.FC<ProfileProps> = ({ navigation }) => {
         }
     };
 
+    function onEditProfile() {
+        navigation.navigate("EditProfile")
+    }
+    function onFavorites () {
+        navigation.navigate("Favoritos")
+    }
+
     function onClickButton() {
         console.log("meu botao");
     }
 
     return (
         <View style={styles.bodyContainer}>
-            <View style={styles.buttonContainer}><ButtonText title={strings.editProfileButton} onPress={onClickButton} /></View>
-            <View style={styles.buttonContainer}><ButtonText title={strings.favoritesProfileButton} onPress={onClickButton} /></View>
+            <View style={styles.buttonContainer}><ButtonText title={strings.editProfileButton} onPress={onEditProfile} /></View>
+            <View style={styles.buttonContainer}><ButtonText title={strings.favoritesProfileButton} onPress={onFavorites} /></View>
             <View style={styles.buttonContainer}><ButtonText title={strings.termsButton} onPress={onClickButton} /></View>
             <View style={styles.buttonContainer}><ButtonText title={strings.policyButton} onPress={onClickButton} /></View>
-            <View style={styles.buttonContainer}><ButtonText title={strings.deleteAccountButton} onPress={onClickButton} textIconColor={colors.red} /></View>
+            <View style={styles.buttonContainer}><ButtonText title={strings.deleteAccountButton} onPress={() =>setDialogVisible(true)} textIconColor={colors.red} /></View>
             <View style={styles.buttonContainer}><ButtonText title={strings.logoutButton} onPress={logout} /></View>
+
+            <CustomDialog 
+            textBody="A exclusão da conta excluira permanentemente seus dados tem certeza disso?"
+            textDeny="Cancelar"
+            textConfirm="Confirmar"
+            title="Tem certeza que deseja excluir sua conta ?"
+            onClose={() => setDialogVisible(false)}
+            onConfirm={() =>setDialogVisible(false)}
+            visible = {isDialogVisible}
+            />
         </View>
     );
 };

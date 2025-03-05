@@ -1,5 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Home from "../modules/home/screens/home";
 import Profile from "../modules/profile/screens/profile";
@@ -12,13 +13,13 @@ type TabParamList = {
     Eventos: undefined;
     Favoritos: undefined;
     Perfil: undefined;
-}
+};
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
 const FooterBar: React.FC = () => {
     return (
-        <>
+        <SafeAreaProvider>
             <Tab.Navigator
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ color, size }) => {
@@ -36,14 +37,13 @@ const FooterBar: React.FC = () => {
                     headerShown: false,
                 })}
             >
-                <Tab.Screen  name="Home" component={Home} />
+                <Tab.Screen name="Home" component={Home} />
                 <Tab.Screen name="Eventos" component={Event} />
                 <Tab.Screen name="Favoritos" component={Favorites} />
                 <Tab.Screen name="Perfil" component={Profile} />
-
             </Tab.Navigator>
-        </>
-    )
+        </SafeAreaProvider>
+    );
 };
 
 export default FooterBar;

@@ -31,6 +31,7 @@ export default ToolbarWithTitle;
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor: colors.light,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",

@@ -6,8 +6,8 @@ import { Provider } from 'react-redux';
 
 import Login from './src/modules/auth/screens/login/login';
 import Register from './src/modules/register/screens/register';
-
 import FooterBar from './src/components/footerbar';
+import EditProfile from './src/modules/profile/screens/editProfile';
 import store from './src/store/store';
 
 const Stack = createStackNavigator();
@@ -30,6 +30,11 @@ export default function App() {
           <Stack.Screen
             name="Home"
             component={FooterBar}
+          />
+
+          <Stack.Screen
+          name="EditProfile"
+          component={EditProfile}
           />
 
         </Stack.Navigator>
