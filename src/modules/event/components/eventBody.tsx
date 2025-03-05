@@ -3,6 +3,7 @@ import EventFilterItem from '../../../components/eventFilterItem';
 import EmptyState from "../../../components/EmptyState";
 import EventItem from "../../../components/eventItem";
 import { strings } from "../../../res/strings/strings";
+import { Event } from "../../../models/eventEntity";
 
 const FilterItem = [
     { id: '1', text: strings.eventsFilterFintech},
@@ -12,9 +13,7 @@ const FilterItem = [
 ];
 
 type Events = {
-    id: string;
-    name: string;
-    photo: string
+    event: Event
 };
 
 const EventBody: React.FC = () => {
@@ -34,9 +33,9 @@ const EventBody: React.FC = () => {
             </View>
             <FlatList
                 data={data}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => item.event.name || "defaultKey"}
                 renderItem={({ item }) => (
-                    <EventItem name={item.name} photo={item.photo}  />
+                    <EventItem event={item.event} />
                 )}
                 ListEmptyComponent={<EmptyState />} 
                 contentContainerStyle={styles.listContainer}

@@ -18,7 +18,7 @@ const ToolbarWithTitle: React.FC<ToolbarProps> = ({ children }) => {
         <View style={styles.container}>
             <TouchableOpacity style={styles.containerButton} onPress={onBackPress}>
                 <Svg width={20} height={20} viewBox="0 0 24 24" fill="none">
-                    <Path d="M15 18l-6-6 6-6" stroke="white" strokeWidth={2} />
+                    <Path d="M15 18l-6-6 6-6" stroke={colors.light} strokeWidth={2} />
                 </Svg>
             </TouchableOpacity>
             <Text style={styles.title}>{children}</Text>

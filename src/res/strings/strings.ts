@@ -24,6 +24,8 @@ export const strings = {
     loginChangePassword: "Esqueceu sua senha?",
     clickHere: "Clique aqui",
     buttonText: "Entrar",
+    createAccount: "Não possui conta ?",
+    registerHere: "Cadastre-se",
 
     //registerBody
     registerNamePlaceholder: "Digite seu nome",
@@ -49,9 +51,6 @@ export const strings = {
     ebdiNetwork:"EBDI Network",
     sponsors:"Patrocinadores",
 
-    // favorites
-    favorites: "Favoritos",
-
     // events
     events: "Eventos",
     eventsFilterFintech: "Fintech",
@@ -62,5 +61,30 @@ export const strings = {
     //emptyState
     emptyStateTitle: "Ops, não tem ninguém aqui...",
     emptyStateSubTitle: "Favorite alguém para começar sua rede.",
+
+    //screens names
+    register: "Cadastro",
+    home: "Home",
+    favorites: "Favoritos",
+    profile: "Perfil",
+    editProfile: "Editar perfil",
+    event: "Eventos",
+
+
+    //editPhoto
+    popupEditPhotoTitle: "Selecionar Imagem",
+    popupEditPhotoSubTitle: "Escolha uma opção:",
+    popupEditPhotoCamera: "Tirar foto",
+    popupEditPhotoGallery: "Escolher da Galeria",
+
+    cancel: "Cancelar",
+    continue: "Confirmar",
+
+    permissionPopupDeny: "Permissão Negada",
+    permissionInfo: "É necessário conceder acesso à câmera e à galeria.",
+
+    //popup exclude account
+    popupExcludeAccountTitle:"Tem certeza que deseja excluir sua conta ?",
+    popupExcludeAccountBody: "A exclusão da conta excluira permanentemente seus dados tem certeza disso?",
 
 };

@@ -9,6 +9,9 @@ import {
     ActionSheetIOS 
 } from "react-native";
 import * as ImagePicker from 'expo-image-picker';
+import { colors } from "../res/colors/colors";
+import { strings } from "../res/strings/strings";
+
 
 const EditPhoto: React.FC = () => {
     const [imageUri, setImageUri] = useState<string | null>(null);
@@ -18,7 +21,7 @@ const EditPhoto: React.FC = () => {
         const { status: galleryStatus } = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
         if (cameraStatus !== 'granted' || galleryStatus !== 'granted') {
-            Alert.alert('Permissão Negada', 'É necessário conceder acesso à câmera e à galeria.');
+            Alert.alert(strings.permissionPopupDeny, strings.permissionInfo);
             return false;
         }
         return true;
@@ -58,7 +61,7 @@ const EditPhoto: React.FC = () => {
         if (Platform.OS === "ios") {
             ActionSheetIOS.showActionSheetWithOptions(
                 {
-                    options: ["Cancelar", "Tirar Foto", "Escolher da Galeria"],
+                    options: [strings.cancel, strings.popupEditPhotoCamera, strings.popupEditPhotoGallery],
                     cancelButtonIndex: 0,
                 },
                 (buttonIndex) => {
@@ -67,10 +70,10 @@ const EditPhoto: React.FC = () => {
                 }
             );
         } else {
-            Alert.alert("Selecionar Imagem", "Escolha uma opção:", [
-                { text: "Cancelar", style: "cancel" },
-                { text: "Tirar Foto", onPress: openCamera },
-                { text: "Escolher da Galeria", onPress: openGallery },
+            Alert.alert(strings.popupEditPhotoTitle, strings.popupEditPhotoSubTitle, [
+                { text: strings.cancel, style: "cancel" },
+                { text: strings.popupEditPhotoCamera, onPress: openCamera },
+                { text: strings.popupEditPhotoGallery, onPress: openGallery },
             ]);
         }
     };
@@ -95,7 +98,7 @@ const styles = StyleSheet.create({
         width: 110,
         height: 110,
         borderRadius: 100,
-        backgroundColor: "#f0f0f0",
+        backgroundColor: colors.whiteSmoke,
         alignItems: "center",
         justifyContent: "center",
         overflow: "hidden", 

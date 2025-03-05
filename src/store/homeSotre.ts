@@ -15,7 +15,7 @@ const initialState: HomeState = {
 }
 
 export const fetchHomeData = createAsyncThunk(
-    "home/fetchHomeData",  // Nome da ação
+    "home/fetchHomeData",
     async (_, { rejectWithValue }) => {
       try {
         const data = await homeRepository.fetchHomeData();

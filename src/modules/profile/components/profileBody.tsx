@@ -52,10 +52,10 @@ const ProfileBody: React.FC<ProfileProps> = ({ navigation }) => {
             <View style={styles.buttonContainer}><ButtonText title={strings.logoutButton} onPress={logout} /></View>
 
             <CustomDialog 
-            textBody="A exclusão da conta excluira permanentemente seus dados tem certeza disso?"
-            textDeny="Cancelar"
-            textConfirm="Confirmar"
-            title="Tem certeza que deseja excluir sua conta ?"
+            textBody={strings.popupExcludeAccountBody}
+            textDeny= {strings.cancel}
+            textConfirm={strings.continue}
+            title={strings.popupExcludeAccountTitle}
             onClose={() => setDialogVisible(false)}
             onConfirm={() =>setDialogVisible(false)}
             visible = {isDialogVisible}

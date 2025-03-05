@@ -1,4 +1,3 @@
-import * as S from './loginHeader.styles';
 import { View, Image, StyleSheet, ImageBackground, Text,  } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { strings } from '../../../../res/strings/strings';

@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { StyleSheet, View, ScrollView, ActivityIndicator, Text } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, View, ScrollView, Text, RefreshControl } from "react-native";
 import HomeHeader from "../components/homeHeader";
 import { colors } from "../../../res/colors/colors";
 import CustomSwiper from "../../../components/CustomSwiper";
@@ -7,6 +7,7 @@ import HomeBody from "../components/homeBody";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store/store";
 import { fetchHomeData } from "../../../store/homeSotre";
+import CustomLoader from "../../../components/customLoader";
 
 const carouselData = [
     { id: "1", uri: require("../../../../assets/banner.png") },
@@ -17,38 +18,41 @@ const carouselData = [
 const Home: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const { data, loading, error } = useSelector((state: RootState) => state.home);
+    const [refreshing, setRefreshing] = useState(false);
+
 
     useEffect(() => {
         dispatch(fetchHomeData());
     }, [dispatch]);
 
-    useEffect(() => {
-        // Verificando os dados no console
-        console.log("Home Data:", data);
-    }, [data]);
-
-    if (loading) {
-        return <ActivityIndicator size="large" color={colors.darkBlue} style={styles.loader} />;
-    }
-
-    if (error) {
-        return <Text style={styles.errorText}>Error: {error}</Text>;
-    }
+    const onRefresh = async () => {
+        setRefreshing(true);
+        await dispatch(fetchHomeData());
+        setRefreshing(false);
+    };
 
     return (
-        <ScrollView
-            style={styles.scrollView}
-            contentContainerStyle={styles.container}
-            showsVerticalScrollIndicator={false}
-        >
-            <HomeHeader />
-            <View style={styles.swiperWrapper}>
-                <CustomSwiper data={carouselData} />
-            </View>
-            <View style={styles.homeBodyContainer}>
-                <HomeBody events={data} />
-            </View>
-        </ScrollView>
+        <View style={styles.container}>
+            {loading && <CustomLoader />}
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.container}
+                showsVerticalScrollIndicator={false}
+                refreshControl={
+                    <RefreshControl refreshing ={refreshing} onRefresh={onRefresh} />
+                }
+            >
+                <HomeHeader />
+                <View style={styles.swiperWrapper}>
+                    <CustomSwiper data={carouselData} />
+                </View>
+                <View style={styles.homeBodyContainer}>
+                    <HomeBody events={data} />
+                </View>
+            </ScrollView>
+
+            {error && <Text style={styles.errorText}>Error: {error}</Text>}
+        </View>
     );
 };
 
@@ -58,6 +62,7 @@ const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
         backgroundColor: colors.light,
+        position: "relative",
     },
     scrollView: {
         flex: 1,
@@ -71,12 +76,6 @@ const styles = StyleSheet.create({
     },
     homeBodyContainer: {
         transform: [{ translateY: -70 }],
-    },
-    loader: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 50,
     },
     errorText: {
         color: "red",

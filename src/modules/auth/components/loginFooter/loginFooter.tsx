@@ -1,5 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { colors } from "../../../../res/colors/colors";
+import { strings } from "../../../../res/strings/strings";
+
 
 interface LoginFooterProps {
     navigation: any;
@@ -10,9 +12,9 @@ const LoginFooter: React.FC<LoginFooterProps> = ({ navigation }) => {
 
         <View style={styles.container}>
             <View style={styles.ContainerText}>
-                <Text style={styles.textNotClicable}>Não possui conta ?</Text>
+                <Text style={styles.textNotClicable}>{strings.createAccount}</Text>
                 <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                <Text style={styles.textClicable}>Cadastre-se</Text>
+                <Text style={styles.textClicable}>{strings.registerHere}</Text>
                 </TouchableOpacity>              
             </View>
         </View>
