@@ -1,18 +1,18 @@
 import PrimaryButton from "../../../../components/PrimaryButton";
 import { useState } from "react";
-import { useDispatch } from 'react-redux'; // Importação do hook useDispatch
+import { useDispatch } from 'react-redux';
 import { AppDispatch } from "../../../../store/store";
-import { StyleSheet, View, Text } from "react-native";
+import { View, Text } from "react-native";
 import CustomTextInput from "../../../../components/customTextInput";
 import { strings } from "../../../../res/strings/strings";
-import { colors } from "../../../../res/colors/colors";
 import { loginUser } from "../../../../store/authStore";
+import styles from "./loginBodyStyles";
 
 interface LoginBodyProps {
     navigation: any;
 }
 
-const LoginBody: React.FC<LoginBodyProps> = ( {navigation}) => {
+const LoginBody: React.FC<LoginBodyProps> = ({ navigation }) => {
     const [userEmail, setUserEmail] = useState<string>("");
     const [userPassword, setUserPassword] = useState<string>("");
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -20,7 +20,7 @@ const LoginBody: React.FC<LoginBodyProps> = ( {navigation}) => {
 
     const dispatch = useDispatch<AppDispatch>();
 
-    const onClickButton = async () => { 
+    const onClickButton = async () => {
         let newErrors: { [key: string]: string } = {};
 
         if (!userEmail) {
@@ -33,7 +33,7 @@ const LoginBody: React.FC<LoginBodyProps> = ( {navigation}) => {
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length === 0) {
-            setLoading(true); 
+            setLoading(true);
 
             try {
                 await dispatch(loginUser({ email: userEmail, password: userPassword })).unwrap();
@@ -44,7 +44,7 @@ const LoginBody: React.FC<LoginBodyProps> = ( {navigation}) => {
 
                 navigation.reset({
                     index: 0,
-                    routes: [{name: 'Home'}]
+                    routes: [{ name: 'Home' }]
                 })
 
 
@@ -103,43 +103,4 @@ const LoginBody: React.FC<LoginBodyProps> = ( {navigation}) => {
 
 export default LoginBody;
 
-const styles = StyleSheet.create({
-    container: {
-        marginTop: 32,
-        width: '85%',
-    },
-    inputText: {
-        height: 50,
-        borderWidth: 1,
-        marginTop: 6,
-        borderColor: colors.lightGray,
-        borderRadius: 8,
-        paddingStart: 16,
-    },
-    inputContainer: {
-        marginTop: 16,
-    },
-    buttonContainer: {
-        marginTop: 24,
-    },
-    forgetPasswordContainer: {
-        marginTop: 16,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    textNotClicable: {
-        color: colors.gray,
-        fontWeight: "bold",
-    },
-    textClicable: {
-        marginStart: 6,
-        color: colors.black,
-        fontWeight: "bold",
-    },
-    errorText: {
-        color: 'red',
-        fontSize: 12,
-        marginTop: 4,
-    },
-});
+

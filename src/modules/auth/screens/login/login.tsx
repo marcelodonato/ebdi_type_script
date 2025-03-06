@@ -1,6 +1,6 @@
 import React from 'react';
-import * as S from './styles';
-import { Text, StyleSheet, View } from "react-native";
+import { View } from "react-native";
+import styles from './loginStyles';
 
 import LoginBody from '../../components/loginBody/loginBody';
 import LoginHeader from '../../components/loginHeader/loginHeader';
@@ -23,18 +23,3 @@ const Login: React.FC = ({ navigation }: any) => {
 }
 
 export default Login;
-
-const styles = StyleSheet.create({
-   container: {
-      flex: 1,
-      width: '100%',
-      backgroundColor: '#ffffff',
-      alignItems: 'center',
-   },
-   containerFooter: {
-      width: '100%',
-      backgroundColor: '#ffffff',
-      alignItems: 'center',
-   }
-
-});
