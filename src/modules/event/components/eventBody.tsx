@@ -1,23 +1,34 @@
-import { StyleSheet, View, FlatList, Text } from "react-native";
+import { StyleSheet, View, FlatList, RefreshControl } from "react-native";
 import EventFilterItem from '../../../components/eventFilterItem';
 import EmptyState from "../../../components/EmptyState";
 import EventItem from "../../../components/eventItem";
 import { strings } from "../../../res/strings/strings";
 import { Event } from "../../../models/eventEntity";
+import { useState, useCallback } from "react";
 
 const FilterItem = [
-    { id: '1', text: strings.eventsFilterFintech},
+    { id: '1', text: strings.eventsFilterFintech },
     { id: '2', text: strings.eventsFilterProductivity },
     { id: '3', text: strings.eventsFilterInnovation },
     { id: '4', text: strings.eventsFilterTechnology },
 ];
 
 type Events = {
-    event: Event
+    events: Event[] | null;
+    onRefresh: () => void;
 };
 
-const EventBody: React.FC = () => {
-    const data: Events[] = []; 
+const EventBody: React.FC<Events> = ({ events, onRefresh }) => {
+    const data: Events[] = [];
+
+    const [refreshing, setRefreshing] = useState(false);
+
+    const handleRefresh = useCallback(async () => {
+        setRefreshing(true);
+        await onRefresh();
+        setRefreshing(false);
+    }, [onRefresh]);
+
     return (
         <View style={styles.container}>
             <View style={styles.filterContainer}>
@@ -32,13 +43,18 @@ const EventBody: React.FC = () => {
                 />
             </View>
             <FlatList
-                data={data}
-                keyExtractor={(item) => item.event.name || "defaultKey"}
+                data={events}
+                keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
-                    <EventItem event={item.event} />
+                    <EventItem event={item} />
                 )}
-                ListEmptyComponent={<EmptyState />} 
+                ListEmptyComponent={<EmptyState />}
+                numColumns={2}
+                columnWrapperStyle={styles.columnWrapper}
                 contentContainerStyle={styles.listContainer}
+                refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
+                }
             />
         </View>
     );
@@ -49,7 +65,7 @@ export default EventBody;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingHorizontal: 16,
+        paddingHorizontal: 6,
     },
     searchFilter: {
         height: 50,
@@ -59,6 +75,13 @@ const styles = StyleSheet.create({
         marginVertical: 16,
     },
     listContainer: {
-        flex: 1, 
+        flexGrow: 1, 
+        paddingBottom: 20, 
+    },
+    columnWrapper: {
+        justifyContent: "space-between",
+        alignItems: "stretch", 
+        marginBottom: 10, 
     },
 });
+

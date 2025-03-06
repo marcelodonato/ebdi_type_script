@@ -5,6 +5,13 @@ export const strings = {
     name: "Nome",
     position: "Posição/Cargo",
     company: "Empresa",
+    birthDate: "Data de nascimento",
+    city: "Cidade",
+    state: "Estado",
+    phone: "Telefone",
+    linkedin: "Linkedin",
+    instagram: "Instagram",
+    site: "Site",
     confirmPassword: "Confirmar senha",
 
     emailEmptyError: "O E-mail é obrigatório!",
@@ -86,5 +93,16 @@ export const strings = {
     //popup exclude account
     popupExcludeAccountTitle:"Tem certeza que deseja excluir sua conta ?",
     popupExcludeAccountBody: "A exclusão da conta excluira permanentemente seus dados tem certeza disso?",
+
+    // update profile
+    birthDateLabel: "Digite sua data de nascimento",
+    cityLabel: "Digite sua cidade",
+    stateLabel: "Digite seu Estado",
+    phoneLabel: "Digite seu telefone",
+    companyLabel: "Digite sua empresa",
+    linkedinLabel: "Digite o link do seu linkedin",
+    instagramLabel: "Digite o link do seu instagram",
+    siteLabel: "Digite o link do seu site",
+
 
 };

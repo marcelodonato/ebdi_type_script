@@ -17,7 +17,15 @@ const RegisterBody: React.FC<LoginBodyProps> = ({ navigation }) => {
         email: '',
         company: '',
         position: '',
-        password: ''
+        password: '',
+        birth_date: null,
+        disc: '',
+        city: '',
+        state: '',
+        phone: '',
+        linkedin: '',
+        profile_image: '',
+        site: '',
     });
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -89,7 +97,15 @@ const RegisterBody: React.FC<LoginBodyProps> = ({ navigation }) => {
             email: '',
             company: '',
             position: '',
-            password: ''
+            password: '',
+            birth_date: null,
+            disc: '',
+            city: '',
+            state: '',
+            phone: '',
+            linkedin: '',
+            profile_image: '',
+            site: '',
         });
         setConfirmPassword('');
     };

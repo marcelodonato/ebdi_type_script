@@ -1,4 +1,4 @@
-import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../firebaseConfig";
 
 const authRepository = {

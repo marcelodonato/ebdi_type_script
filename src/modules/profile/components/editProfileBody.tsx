@@ -2,20 +2,45 @@ import { View, StyleSheet } from "react-native";
 import PrimaryButton from "../../../components/PrimaryButton";
 import CustomTextInput from "../../../components/customTextInput";
 import { strings } from "../../../res/strings/strings";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { User } from "../../../models/userEntity";
 import EditPhoto from "../../../components/editPhoto";
+import { RootState } from "../../../store/store";
+import { useSelector } from "react-redux";
+import { Timestamp } from "firebase/firestore"; 
 
 const EditProfileBody: React.FC = () => {
+
+    const userData = useSelector((state: RootState) => state.user.userData);
+
     const [user, setUser] = useState<User>({
         name: '',
         email: '',
         company: '',
         position: '',
-        password: ''
+        password: '',
+        birth_date: null,
+        disc: '',
+        city: '',
+        state: '',
+        phone: '',
+        linkedin: '',
+        profile_image: '',
+        site: '',
     });
 
     const [loading, setLoading] = useState<boolean>(false);
+
+    useEffect (() => {
+        if(userData) {
+            setUser({
+                ...userData,
+                birth_date: userData.birth_date instanceof Timestamp ? userData.birth_date.toDate() : null, 
+            });
+        }
+    }, [userData]);
+
+
     return (
         <>
             <View>
@@ -27,92 +52,82 @@ const EditProfileBody: React.FC = () => {
                     label={strings.registerNamePlaceholder}
                     inputType="text"
                     value={user.name}
-                    // error={errors.name}
                     onErrorClear={() => { }}
-                    onChangeText={(text) => { }}
+                    onChangeText={(text) => setUser((prev) => ({ ...prev, name: text }))}
                 />
                 <CustomTextInput
-                    textTitle={"Data de Nascimento"}
-                    label={"Digite sua data de nascimento"}
+                    textTitle={strings.birthDate}
+                    label={strings.birthDateLabel}
                     inputType="text"
-                    value={user.company}
-                    // error={errors.name}
+                    value={user.birth_date ? user.birth_date.toLocaleDateString() : ""}
                     onErrorClear={() => { }}
-                    onChangeText={(text) => { }}
+                    onChangeText={(text) => setUser((prev) => ({ ...prev, birth_date: new Date(text) }))}
                 />
                 <CustomTextInput
-                    textTitle={"Cidade"}
-                    label={"Digite sua cidade"}
+                    textTitle={strings.city}
+                    label={strings.cityLabel}
                     inputType="text"
-                    value={user.position}
-                    // error={errors.name}
+                    value={user.city || ""}
                     onErrorClear={() => { }}
-                    onChangeText={(text) => { }}
+                    onChangeText={(text) => setUser((prev) => ({ ...prev, city: text }))}
                 />
                 <CustomTextInput
-                    textTitle={"Estado"}
-                    label={"Digite seu Estado"}
-                    inputType="email"
-                    value={user.email}
+                    textTitle={strings.state}
+                    label={strings.stateLabel}
+                    inputType="text"
+                    value={user.state || ""}
                     autoCapitalize="none"
                     keyboardType="email-address"
-                    // error={errors.name}
                     onErrorClear={() => { }}
-                    onChangeText={(text) => { }}
+                    onChangeText={(text) => setUser((prev) => ({ ...prev, state: text }))}
                 />
                 <CustomTextInput
-                    textTitle={"Telefone"}
-                    label={"Digite seu telefone"}
-                    inputType="password"
-                    value={user.password}
-                    // error={errors.name}
+                    textTitle={strings.phone}
+                    label={strings.phoneLabel}
+                    inputType="text"
+                    value={user.phone || ""}
                     onErrorClear={() => { }}
-                    onChangeText={(text) => { }}
+                    onChangeText={(text) => setUser((prev) => ({ ...prev, phone: text }))}
                 />
                  <CustomTextInput
-                    textTitle={"Empresa"}
-                    label={"Digite sua empresa"}
-                    inputType="password"
-                    value={user.password}
-                    // error={errors.name}
+                    textTitle={strings.company}
+                    label={strings.companyLabel}
+                    inputType="text"
+                    value={user.company}
                     onErrorClear={() => { }}
-                    onChangeText={(text) => { }}
+                    onChangeText={(text) => setUser((prev) => ({ ...prev, company: text }))}
                 />
                  <CustomTextInput
                     textTitle={strings.position}
                     label={strings.registerPositionPlaceholder}
-                    inputType="password"
-                    value={user.password}
-                    // error={errors.name}
+                    inputType="text"
+                    value={user.position}
                     onErrorClear={() => { }}
-                    onChangeText={(text) => { }}
+                    onChangeText={(text) => setUser((prev) => ({ ...prev, position: text }))}
                 />
                  <CustomTextInput
-                    textTitle={"Linkedin"}
-                    label={"Digite o link do seu linkedin"}
-                    inputType="password"
-                    value={user.password}
-                    // error={errors.name}
+                    textTitle={strings.linkedin}
+                    label={strings.linkedinLabel}
+                    inputType="text"
+                    value={user.linkedin || ""}
                     onErrorClear={() => { }}
-                    onChangeText={(text) => { }}
+                    onChangeText={(text) => setUser((prev) => ({ ...prev, linkedin: text }))}
                 />
                  <CustomTextInput
-                    textTitle={"Instagram"}
-                    label={"Digite o link do seu instagram"}
-                    inputType="password"
+                    textTitle={strings.instagram}
+                    label={strings.instagramLabel}
+                    inputType="text"
                     value={user.password}
-                    // error={errors.name}
                     onErrorClear={() => { }}
-                    onChangeText={(text) => { }}
+                    onChangeText={(text) => setUser((prev) => ({ ...prev, name: text }))}
                 />
                  <CustomTextInput
-                    textTitle={"Site"}
-                    label={"Digite o link do seu site"}
-                    inputType="password"
-                    value={user.password}
-                    // error={errors.name}
+                    textTitle={strings.site}
+                    label={strings.siteLabel}
+                    inputType="text"
+                    value={user.site || ""}
                     onErrorClear={() => { }}
-                    onChangeText={(text) => { }}
+                    onChangeText={(text) => setUser((prev) => ({ ...prev, site: text }))}
                 />
                 
                 <View style={styles.buttonContainer}>
