@@ -1,10 +1,10 @@
-import { View, Text, FlatList, StyleSheet } from "react-native";
-import { colors } from "../../../res/colors/colors";
-import EventItem from "../../../components/eventItem";
-import ItemAccountList from "../../../components/itemAccountList";
-import SponsorItem from "../../../components/sponsorItem";
-import { strings } from "../../../res/strings/strings";
-import { Event } from "../../../models/eventEntity";
+import { View, Text, FlatList, } from "react-native";
+import EventItem from "../../../../components/eventItem";
+import ItemAccountList from "../../../../components/itemAccountList";
+import SponsorItem from "../../../../components/sponsorItem";
+import { strings } from "../../../../res/strings/strings";
+import { Event } from "../../../../models/eventEntity";
+import styles from "./homeBodyStyle"
 
 const data = [
     { id: '1', name: "Marcelo Donato", photo: "" },
@@ -17,13 +17,13 @@ interface homeData {
     events: Event[] | null;
 }
 
-const HomeBody: React.FC<homeData> = ({ events}) => {
+const HomeBody: React.FC<homeData> = ({ events }) => {
     return (
         <View style={styles.container}>
             <Section title={strings.nextEvents}>
                 <FlatList
                     data={events}
-                    keyExtractor={(item) => item.name || 'defaultKey'}
+                    keyExtractor={(item, index) => index.toString() || 'defaultKey'}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => <EventItem event={item} />}
@@ -68,33 +68,3 @@ const Section = ({ title, children }: { title: string; children: React.ReactNode
 
 export default HomeBody;
 
-const styles = StyleSheet.create({
-    container: {
-        width: '100%',
-        paddingHorizontal: 0,
-        paddingBottom: 30,
-    },
-    section: {
-        marginBottom: 20,
-    },
-    textContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '100%',
-        marginBottom: 10,
-        paddingHorizontal: 16
-    },
-    title: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: colors.black,
-    },
-    seeAll: {
-        fontSize: 14,
-    
-    },
-    listContainer: {
-        flexDirection: 'row',
-        marginStart: 8
-    },
-});
