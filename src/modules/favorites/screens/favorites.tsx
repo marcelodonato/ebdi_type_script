@@ -1,9 +1,9 @@
 import React from "react";
-import { View, SafeAreaView, StyleSheet, FlatList, Text } from "react-native";
+import { View, SafeAreaView, FlatList, Text } from "react-native";
 import TopBarWithTitle from "../../../components/topBarWithTitle";
 import EmptyState from "../../../components/EmptyState";
 import { strings } from "../../../res/strings/strings";
-
+import styles from "./favoritesStyles";
 
 type FavoriteItem = {
     id: string;
@@ -32,22 +32,3 @@ const Favorites: React.FC = () => {
 };
 
 export default Favorites;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    item: {
-        padding: 15,
-        borderBottomWidth: 1,
-        borderBottomColor: "#ddd",
-    },
-    text: {
-        fontSize: 16,
-        color: "#333",
-    },
-    emptyContainer: {
-        flex: 1,
-        justifyContent: "center",
-    },
-});

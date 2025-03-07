@@ -1,32 +1,19 @@
-import { View, StyleSheet, SafeAreaView } from "react-native";
+import { View, SafeAreaView } from "react-native";
 import TopBarWithTitle from "../../../components/topBarWithTitle";
-import EventBody from "../components/eventBody";
+import EventBody from "../components/eventBody/eventBody";
 import { strings } from "../../../res/strings/strings";
-import { AppDispatch, RootState } from "../../../store/store";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchHomeData } from "../../../store/homeSotre";
-import { useState } from "react";
+import styles from "./eventStyles";
+import useEvent from "./eventHooks";
 
 
 const Event: React.FC = () => {
-    const dispatch = useDispatch<AppDispatch>();
-    const { data, loading, error } = useSelector((state: RootState) => state.home);
     
-    useEffect(() => {
-        if (!data) {
-            dispatch(fetchHomeData());
-        }
-    }, [dispatch, data]);
-
-    const [refreshing, setRefreshing] = useState(false);
-
-     const onRefresh = async () => {
-            setRefreshing(true);
-            await dispatch(fetchHomeData());
-            setRefreshing(false);
-        };
-    
+    const {
+        data,
+        loading,
+        error,
+        onRefresh,
+    } = useEvent();
 
     return (
         <SafeAreaView style={styles.container}>
@@ -39,12 +26,3 @@ const Event: React.FC = () => {
 };
 
 export default Event;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    innerContainer: {
-        flex: 1,
-    },
-});

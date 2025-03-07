@@ -1,10 +1,11 @@
-import { StyleSheet, View, FlatList, RefreshControl } from "react-native";
-import EventFilterItem from '../../../components/eventFilterItem';
-import EmptyState from "../../../components/EmptyState";
-import EventItem from "../../../components/eventItem";
-import { strings } from "../../../res/strings/strings";
-import { Event } from "../../../models/eventEntity";
-import { useState, useCallback } from "react";
+import { View, FlatList, RefreshControl } from "react-native";
+import EventFilterItem from '../../../../components/eventFilterItem';
+import EmptyState from "../../../../components/EmptyState";
+import EventItem from "../../../../components/eventItem";
+import { strings } from "../../../../res/strings/strings";
+import { Event } from "../../../../models/eventEntity";
+import styles from "./eventBodyStyles";
+import { useEventBody } from "./eventBodyHooks";
 
 const FilterItem = [
     { id: '1', text: strings.eventsFilterFintech },
@@ -15,19 +16,12 @@ const FilterItem = [
 
 type Events = {
     events: Event[] | null;
-    onRefresh: () => void;
+    onRefresh: () => Promise<void>;
 };
 
 const EventBody: React.FC<Events> = ({ events, onRefresh }) => {
-    const data: Events[] = [];
 
-    const [refreshing, setRefreshing] = useState(false);
-
-    const handleRefresh = useCallback(async () => {
-        setRefreshing(true);
-        await onRefresh();
-        setRefreshing(false);
-    }, [onRefresh]);
+    const { refreshing, handleRefresh } = useEventBody({ onRefresh });
 
     return (
         <View style={styles.container}>
@@ -61,27 +55,3 @@ const EventBody: React.FC<Events> = ({ events, onRefresh }) => {
 };
 
 export default EventBody;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingHorizontal: 6,
-    },
-    searchFilter: {
-        height: 50,
-    },
-    filterContainer: {
-        height: 50,
-        marginVertical: 16,
-    },
-    listContainer: {
-        flexGrow: 1, 
-        paddingBottom: 20, 
-    },
-    columnWrapper: {
-        justifyContent: "space-between",
-        alignItems: "stretch", 
-        marginBottom: 10, 
-    },
-});
-
