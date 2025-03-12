@@ -1,10 +1,10 @@
 import { View, StyleSheet } from "react-native";
-import PrimaryButton from "../../../components/PrimaryButton";
-import CustomTextInput from "../../../components/customTextInput";
+import PrimaryButton from "../../../components/primaryButton/PrimaryButton";
+import CustomTextInput from "../../../components/customTextInput/customTextInput";
 import { strings } from "../../../res/strings/strings";
 import { useEffect, useState } from "react";
 import { User } from "../../../models/userEntity";
-import EditPhoto from "../../../components/editPhoto";
+import EditPhoto from "../../../components/editPhoto/editPhoto";
 import { RootState } from "../../../store/store";
 import { useSelector } from "react-redux";
 import { Timestamp } from "firebase/firestore"; 

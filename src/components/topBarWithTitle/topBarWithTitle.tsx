@@ -1,5 +1,5 @@
 import { Text, View, StyleSheet } from "react-native";
-import { colors } from "../res/colors/colors";
+import styles from "./topBarWithTitleStyles";
 
 
 interface TopBarProps {
@@ -18,16 +18,3 @@ const TopBarWithTitle: React.FC<TopBarProps>  = ({title}) => {
 
 export default TopBarWithTitle;
 
-const styles = StyleSheet.create({
-    container: {
-        width: '100%',
-        height: 80,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: colors.light
-    },
-    title: {
-        fontSize: 18,
-        fontWeight: 'bold'
-    }
-});

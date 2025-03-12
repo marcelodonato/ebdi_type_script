@@ -1,7 +1,7 @@
 import { View, StyleSheet } from "react-native";
-import CustomTextInput from "../../../components/customTextInput";
+import CustomTextInput from "../../../components/customTextInput/customTextInput";
 import { useState } from "react";
-import PrimaryButton from "../../../components/PrimaryButton";
+import PrimaryButton from "../../../components/primaryButton/PrimaryButton";
 import { strings } from "../../../res/strings/strings";
 import { User } from "../../../models/userEntity";
 import { createUser } from "../../../actions/registerUserAction";

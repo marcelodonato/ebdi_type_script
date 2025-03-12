@@ -1,7 +1,7 @@
 import { View, FlatList, RefreshControl } from "react-native";
-import EventFilterItem from '../../../../components/eventFilterItem';
-import EmptyState from "../../../../components/EmptyState";
-import EventItem from "../../../../components/eventItem";
+import EventFilterItem from "../../../../components/eventFilterItem/eventFilterItem";
+import EmptyState from "../../../../components/emptyState/EmptyState";
+import EventItem from "../../../../components/eventItem/eventItem";
 import { strings } from "../../../../res/strings/strings";
 import { Event } from "../../../../models/eventEntity";
 import styles from "./eventBodyStyles";

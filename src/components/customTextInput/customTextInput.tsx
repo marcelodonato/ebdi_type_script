@@ -1,6 +1,5 @@
-import React from 'react';
 import { TextInput, StyleSheet, TextInputProps, Text, View } from 'react-native';
-import { colors } from '../res/colors/colors';
+import styles from './customTextInputStyles';
 
 interface CustomTextInputProps extends TextInputProps {
     textTitle: string;
@@ -58,30 +57,3 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
 };
 
 export default CustomTextInput;
-
-const styles = StyleSheet.create({
-    inputContainer: {
-        marginTop: 16,
-    },
-    textTitle: {
-        color: colors.black,
-        fontSize: 16,
-        marginBottom: 6,
-    },
-    inputText: {
-        height: 50,
-        borderWidth: 1,
-        marginTop: 6,
-        borderColor: colors.lightGray,
-        borderRadius: 8,
-        paddingStart: 16,
-    },
-    errorBorder: {
-        borderColor: 'red',
-    },
-    errorText: {
-        color: 'red',
-        fontSize: 12,
-        marginTop: 4,
-    }
-});

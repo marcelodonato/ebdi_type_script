@@ -1,5 +1,5 @@
 import { View, SafeAreaView } from "react-native";
-import TopBarWithTitle from "../../../components/topBarWithTitle";
+import TopBarWithTitle from "../../../components/topBarWithTitle/topBarWithTitle";
 import EventBody from "../components/eventBody/eventBody";
 import { strings } from "../../../res/strings/strings";
 import styles from "./eventStyles";

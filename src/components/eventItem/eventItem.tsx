@@ -1,8 +1,9 @@
 import { View, Text, Image, StyleSheet } from "react-native";
-import { colors } from "../res/colors/colors";
+import { colors } from "../../res/colors/colors";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { Event } from "../models/eventEntity";
-import { Timestamp } from "firebase/firestore";  // Importe o tipo Timestamp
+import { Event } from "../../models/eventEntity";
+import { Timestamp } from "firebase/firestore";
+import styles from "./eventItemStyles";
 
 interface EventItemProps {
     event?: Event;
@@ -10,7 +11,7 @@ interface EventItemProps {
 
 const EventItem: React.FC<EventItemProps> = ({ event = null }) => {
 
-    const placeholderImage = require("../../assets/banner.png");
+    const placeholderImage = require("../../../assets/banner.png");
 
     let startDate = "N/A";
     if (event?.start_date) {
@@ -45,39 +46,3 @@ const EventItem: React.FC<EventItemProps> = ({ event = null }) => {
 };
 
 export default EventItem;
-
-const styles = StyleSheet.create({
-    container: {
-        width: 180,
-        height: 230,
-        borderColor: colors.black,
-        borderRadius: 8,
-        borderWidth: 1,
-        marginEnd: 16,
-        overflow: 'hidden'
-    },
-    image: {
-        width: '100%',
-        height: '50%',
-        borderTopEndRadius: 8,
-        borderTopStartRadius: 8
-    },
-    textContainer: {
-        padding: 6
-    },
-    textTitle:{
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginBottom: 6
-    },
-    text: {
-        fontSize: 16,
-        marginStart: 6
-    },
-    rowContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 4,
-        paddingHorizontal: 6,
-    }
-});

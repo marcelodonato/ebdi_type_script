@@ -1,6 +1,6 @@
 import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import ToolbarWithTitle from "../../../components/ToolbarWithTitle";
+import ToolbarWithTitle from "../../../components/toolBarWithTitle/ToolbarWithTitle";
 import { colors } from "../../../res/colors/colors";
 import EditProfileBody from "../components/editProfileBody";
 

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { View, StyleSheet,  } from "react-native";
-import ButtonText from "../../../components/buttonText";
+import ButtonText from "../../../components/buttonText/buttonText";
 import { colors } from "../../../res/colors/colors";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store/store";
 import { logoutUser } from "../../../store/authStore";
 import { strings } from "../../../res/strings/strings";
-import CustomDialog from "../../../components/customDialog";
+import CustomDialog from "../../../components/customDialog/customDialog";
 
 interface ProfileProps {
     navigation: any;

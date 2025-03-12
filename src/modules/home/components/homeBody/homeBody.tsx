@@ -1,7 +1,7 @@
 import { View, Text, FlatList, } from "react-native";
-import EventItem from "../../../../components/eventItem";
-import ItemAccountList from "../../../../components/itemAccountList";
-import SponsorItem from "../../../../components/sponsorItem";
+import EventItem from "../../../../components/eventItem/eventItem";
+import ItemAccountList from "../../../../components/itemAccountList/itemAccountList";
+import SponsorItem from "../../../../components/sponsorItem/sponsorItem";
 import { strings } from "../../../../res/strings/strings";
 import { Event } from "../../../../models/eventEntity";
 import styles from "./homeBodyStyle"

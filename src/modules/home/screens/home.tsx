@@ -1,8 +1,8 @@
 import { View, ScrollView, Text, RefreshControl } from "react-native";
 import HomeHeader from "../components/homeHeader/homeHeader";
-import CustomSwiper from "../../../components/CustomSwiper";
+import CustomSwiper from "../../../components/customSwiper/CustomSwiper";
 import HomeBody from "../components/homeBody/homeBody";
-import CustomLoader from "../../../components/customLoader";
+import CustomLoader from "../../../components/customLoader/customLoader";
 import useHome from "./homeHooks";
 import HomeStyle from "./homeStyle"
 

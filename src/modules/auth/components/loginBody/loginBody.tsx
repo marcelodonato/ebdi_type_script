@@ -1,9 +1,9 @@
-import PrimaryButton from "../../../../components/PrimaryButton";
+import PrimaryButton from "../../../../components/primaryButton/PrimaryButton";
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from "../../../../store/store";
 import { View, Text } from "react-native";
-import CustomTextInput from "../../../../components/customTextInput";
+import CustomTextInput from "../../../../components/customTextInput/customTextInput";
 import { strings } from "../../../../res/strings/strings";
 import { loginUser } from "../../../../store/authStore";
 import styles from "./loginBodyStyles";

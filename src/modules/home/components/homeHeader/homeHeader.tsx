@@ -1,7 +1,7 @@
-import { View, ImageBackground, Text, StyleSheet, FlatList } from "react-native";
+import { View, ImageBackground, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./homeHeaderStyle";
-import ItemAccountList from "../../../../components/itemAccountList";
+import ItemAccountList from "../../../../components/itemAccountList/itemAccountList";
 
 const data = [
     { id: '1', name: "Marcelo Donato", photo: "" },

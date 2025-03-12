@@ -1,5 +1,5 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import ToolbarWithTitle from "../../../components/ToolbarWithTitle";
+import ToolbarWithTitle from "../../../components/toolBarWithTitle/ToolbarWithTitle";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import RegisterBody from "../components/registerBody";

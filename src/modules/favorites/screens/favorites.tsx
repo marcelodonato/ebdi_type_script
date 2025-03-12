@@ -1,7 +1,7 @@
 import React from "react";
 import { View, SafeAreaView, FlatList, Text } from "react-native";
-import TopBarWithTitle from "../../../components/topBarWithTitle";
-import EmptyState from "../../../components/EmptyState";
+import TopBarWithTitle from "../../../components/topBarWithTitle/topBarWithTitle";
+import EmptyState from "../../../components/emptyState/EmptyState";
 import { strings } from "../../../res/strings/strings";
 import styles from "./favoritesStyles";
 
