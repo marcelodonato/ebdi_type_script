@@ -1,11 +1,10 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import ToolbarWithTitle from "../../../components/toolBarWithTitle/ToolbarWithTitle";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, ScrollView } from "react-native";
 import { StatusBar } from 'expo-status-bar';
-import RegisterBody from "../components/registerBody";
-import { colors } from "../../../res/colors/colors";
+import RegisterBody from "../components/registerBody/registerBody";
 import { strings } from "../../../res/strings/strings";
-
+import styles from "./registerStyles";
 
 const Register: React.FC = ({ navigation }: any) => {
     return (
@@ -28,16 +27,3 @@ const Register: React.FC = ({ navigation }: any) => {
 };
 
 export default Register;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: colors.light
-    },
-    registerBodyContainer: {
-        flexGrow: 1,
-        justifyContent: 'flex-start',
-        marginHorizontal: 24,
-        paddingBottom: 16,
-    }
-});
