@@ -1,31 +1,21 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import { colors } from "../../res/colors/colors";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { Event } from "../../models/eventEntity";
-import { Timestamp } from "firebase/firestore";
 import styles from "./eventItemStyles";
+import { useEventItem } from "./eventItemHook";
 
 interface EventItemProps {
-    event?: Event;
+    event: Event;
 }
 
-const EventItem: React.FC<EventItemProps> = ({ event = null }) => {
+const EventItem: React.FC<EventItemProps> = ({ event }) => {
+    const { startDate, handlePress } = useEventItem(event);
 
     const placeholderImage = require("../../../assets/banner.png");
 
-    let startDate = "N/A";
-    if (event?.start_date) {
-        if (event.start_date instanceof Timestamp) {
-            startDate = event.start_date.toDate().toLocaleDateString();
-        } else if (typeof event.start_date === "string") {
-            startDate = event.start_date;
-        } else {
-            startDate = "Invalid Date";
-        }
-    }
-
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={handlePress}>
             <Image
                 source={event?.event_photo_link ? { uri: event?.event_photo_link } : placeholderImage}
                 style={styles.image}
@@ -41,7 +31,7 @@ const EventItem: React.FC<EventItemProps> = ({ event = null }) => {
                     <Text style={styles.text} numberOfLines={2}>{event?.city}</Text>
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     );
 };
 

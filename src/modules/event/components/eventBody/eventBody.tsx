@@ -40,7 +40,7 @@ const EventBody: React.FC<Events> = ({ events, onRefresh }) => {
                 data={events}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
-                    <EventItem event={item} />
+                    <EventItem event={item}/>
                 )}
                 ListEmptyComponent={<EmptyState />}
                 numColumns={2}

@@ -2,6 +2,12 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import { Event } from "../models/eventEntity"; 
 
+const convertFirebaseTimestampToDate = (firebaseTimestamp: { seconds: number, nanoseconds: number } | null): Date | null => {
+  if (!firebaseTimestamp) return null;
+  const milliseconds = firebaseTimestamp.seconds * 1000 + firebaseTimestamp.nanoseconds / 1000000;
+  return new Date(milliseconds);
+};
+
 const homeRepository = {
     fetchHomeData: async (): Promise<Event[]> => {
       try {
@@ -22,7 +28,7 @@ const homeRepository = {
             name: docData.name || null,
             schedule: docData.schedule || null,
             sponsors: docData.sponsors || null,
-            start_date: docData.start_date || null,
+            start_date: convertFirebaseTimestampToDate(docData.start_date),
             users_accepted: docData.users_accepted || null,
             users_liked: docData.users_liked || null,
           };

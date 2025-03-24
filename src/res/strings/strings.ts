@@ -104,5 +104,12 @@ export const strings = {
     instagramLabel: "Digite o link do seu instagram",
     siteLabel: "Digite o link do seu site",
 
+    //eventDetails
+    disc: "Descrição",
+    eventSchedule: "Programação",
+    rsvp:"RSVP",
+    interestedButton: "Tenho interesse",
+
+
 
 };

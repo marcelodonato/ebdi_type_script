@@ -24,7 +24,7 @@ const Home: React.FC = () => {
 
     return (
         <View style={HomeStyle.container}>
-            {loading && <CustomLoader />}
+            {loading && <CustomLoader visible={true} />}
             <ScrollView
                 style={HomeStyle.scrollView}
                 contentContainerStyle={HomeStyle.container}

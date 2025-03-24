@@ -4,6 +4,7 @@ import PrimaryButton from "../../../../components/primaryButton/PrimaryButton";
 import { strings } from "../../../../res/strings/strings";
 import styles from "./registerBodyStyles";
 import useRegisterBody from "./registerBodyHook";
+import CustomLoader from "../../../../components/customLoader/customLoader";
 
 interface LoginBodyProps {
     navigation: any;
@@ -23,6 +24,10 @@ const RegisterBody: React.FC<LoginBodyProps> = ({ navigation }) => {
     } = useRegisterBody(navigation)
  
     return (
+        <>
+        <View style={{flex: 1}}>
+        <CustomLoader visible={true} />
+        </View>
         <View>
             <CustomTextInput
                 textTitle={strings.name}
@@ -86,6 +91,8 @@ const RegisterBody: React.FC<LoginBodyProps> = ({ navigation }) => {
                     onPress={handleSubmit}>{loading ? "Carregando..." : "Cadastrar"}</PrimaryButton>
             </View>
         </View>
+        </>
+        
     );
 };
 
