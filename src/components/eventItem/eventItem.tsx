@@ -10,7 +10,7 @@ interface EventItemProps {
 }
 
 const EventItem: React.FC<EventItemProps> = ({ event }) => {
-    const { startDate, handlePress } = useEventItem(event);
+    const { startDate, handlePress, formattedDate } = useEventItem(event);
 
     const placeholderImage = require("../../../assets/banner.png");
 
@@ -24,7 +24,7 @@ const EventItem: React.FC<EventItemProps> = ({ event }) => {
                 <Text style={styles.textTitle} numberOfLines={2}>{event?.name}</Text>
                 <View style={styles.rowContainer}>
                     <Ionicons name="calendar-outline" size={16} color={colors.black} />
-                    <Text style={styles.text} numberOfLines={2}>{startDate}</Text>
+                    <Text style={styles.text} numberOfLines={2}>{formattedDate}</Text>
                 </View>
                 <View style={styles.rowContainer}>
                     <Ionicons name="location-outline" size={16} color={colors.black} />

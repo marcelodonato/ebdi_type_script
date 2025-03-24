@@ -6,17 +6,12 @@ import styles from "./eventDetailsBodyStyle";
 import { Event } from "../../../../models/eventEntity";
 import { strings } from "../../../../res/strings/strings";
 import SponsorItem from "../../../../components/sponsorItem/sponsorItem";
+import moment from "moment";
+import useEventDetailsBody from "./eventDetailsBodyHooks";
 
 interface EventDtailsBodyProps {
     event?: Event;
 }
-
-const data = [
-    { id: '1', name: "Marcelo Donato", photo: "" },
-    { id: '2', name: "João Silva", photo: "" },
-    { id: '3', name: "Maria Oliveira", photo: "" },
-
-];
 
 const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
     <View style={styles.section}>
@@ -28,10 +23,7 @@ const Section = ({ title, children }: { title: string; children: React.ReactNode
 );
 
 const EventDetailsBody: React.FC<EventDtailsBodyProps> = ({ event }) => {
-
-    const onPress = () => {
-        console.log("cliquei")
-    }
+    const {formatEventDate, onPress, data} = useEventDetailsBody(event)
 
     return (
         <>
@@ -44,8 +36,13 @@ const EventDetailsBody: React.FC<EventDtailsBodyProps> = ({ event }) => {
                 <View style={styles.containerRow}>
                     <Ionicons name="calendar" size={18} color={colors.black} />
                     <View style={styles.columnContainer}>
-                        <Text style={styles.textSubTitle}>minha localizacao,</Text>
-                        <Text style={styles.textSubTitle}>minha localizacao,</Text>
+                        <Text style={styles.textSubTitle}>
+                            <Text style={{ fontWeight: 'bold' }}>{strings.start} </Text>
+                            <Text>{formatEventDate(event?.start_date ?? Date())}</Text>
+                        </Text>
+                        <Text style={styles.textSubTitle}>
+                            <Text style={{ fontWeight: 'bold' }}>{strings.end} </Text>
+                            <Text>{formatEventDate(event?.end_date ?? Date())}</Text></Text>
                     </View>
                 </View>
                 <Divider style={{ height: 2, backgroundColor: colors.lightGray, marginVertical: 10 }} />

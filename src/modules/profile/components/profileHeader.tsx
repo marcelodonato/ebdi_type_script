@@ -17,6 +17,7 @@ const ProfileHeader: React.FC = () => {
         }
     }, [userUid, dispatch])
 
+    console.log(userData)
 
     return (
         <View style={styles.container}>

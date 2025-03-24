@@ -1,4 +1,4 @@
-// hooks/useEventDetails.ts
+
 import { useState, useEffect } from 'react';
 import moment from 'moment';
 import { Event } from '../../../../models/eventEntity';

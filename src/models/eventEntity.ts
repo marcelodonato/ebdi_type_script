@@ -1,7 +1,7 @@
 export interface Event {
     city: string | null;
     description: string  | null;
-    end_date: string  | null;
+    end_date: Date  | null;
     event_images: { image: string }[]  | null;
     event_list: { event: string }[]  | null;
     event_photo_link: string  | null;

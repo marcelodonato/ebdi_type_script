@@ -109,6 +109,8 @@ export const strings = {
     eventSchedule: "Programação",
     rsvp:"RSVP",
     interestedButton: "Tenho interesse",
+    start: "Início:",
+    end: "Fim:",
 
 
 

@@ -19,7 +19,7 @@ const homeRepository = {
           return {
             city: docData.city || null,
             description: docData.description || null,
-            end_date: docData.end_date || null,
+            end_date: convertFirebaseTimestampToDate(docData.end_date) || null,
             event_images: docData.event_images || null,
             event_list: docData.event_list || null,
             event_photo_link: docData.event_photo_link || null,
